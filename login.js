@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword,
         GoogleAuthProvider
  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import { auth } from "./config.js"
+// import { popupModal  } from "./home.js";
 // auth.languageCode = 'en';
 
 const email = document.querySelector("#email");
@@ -25,7 +26,6 @@ signInWithEmailAndPassword(auth, email.value, password.value)
     // Signed in 
     const user = userCredential.user;
     window.location.href = "home.html" ;
-    // ...
   })
   .catch((error) => {
     const errorCode = error.code;

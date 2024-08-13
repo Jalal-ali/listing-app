@@ -6,20 +6,37 @@
 </head>
 <body>
 <!-- component -->
-<div class="bg-dark h-screen">
-    <div class="bg-dark text-white p-6  md:mx-auto">
-      <svg viewBox="0 0 24 24" class="text-green-600 w-16 h-16 mx-auto my-6">
-          <path fill="currentColor"
-              d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z">
-          </path>
-      </svg>
-      <div class="text-center">
-          <h3 class="md:text-2xl text-base text-green-200 font-semibold text-center">CONGRATULATIONS!</h3>
-          <p class="text-gray-400 my-2">You're logged in successfully.</p>
-          <p> Have a great day!  </p>
-          <div class="py-10 text-center">
-            <button id="btn" class="btn btn-success">Log-Out</button>
-          </div>
+<div class=" max-sm mx-auto my-auto px-4 bg-dark h-screen">
+    <div class="container bg-dark text-white p-6 sm:mx-auto md:mx-auto">
+      <div class="container text-center">
+
+
+              <div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center flex w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <div class="p-4 md:p-5 text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-14 shrink-0 fill-green-500 inline" viewBox="0 0 512 512">
+                        <path
+                            d="M383.841 171.838c-7.881-8.31-21.02-8.676-29.343-.775L221.987 296.732l-63.204-64.893c-8.005-8.213-21.13-8.393-29.35-.387-8.213 7.998-8.386 21.137-.388 29.35l77.492 79.561a20.687 20.687 0 0 0 14.869 6.275 20.744 20.744 0 0 0 14.288-5.694l147.373-139.762c8.316-7.888 8.668-21.027.774-29.344z"
+                            data-original="#000000" />
+                        <path
+                            d="M256 0C114.84 0 0 114.84 0 256s114.84 256 256 256 256-114.84 256-256S397.16 0 256 0zm0 470.487c-118.265 0-214.487-96.214-214.487-214.487 0-118.265 96.221-214.487 214.487-214.487 118.272 0 214.487 96.221 214.487 214.487 0 118.272-96.215 214.487-214.487 214.487z"
+                            data-original="#000000" />
+                    </svg>
+                    <h3 class="md:text-2xl text-lg sm:text-md mt-2 text-base text-green-200 font-semibold text-center">CONGRATULATIONS!</h3>
+                    <p class="text-gray-400 md:text-2xl text-lg sm:text-md my-2">You're logged in successfully.</p>
+                    <p class="text-sm text-lg text-gray-200 text-xl"> Have a great day!  </p>
+                    <div class="flex justify-evenly justify-items-end ms-auto mt-4 container">
+                      <button id="btn" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Log-Out</button>
+                      <button id="closePopup" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">OKAY</button>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+          
 
 <!-- modal started -->
 
@@ -85,7 +102,8 @@
 
           <div id="items" class="my-2 gap-3 justify-center flex flex-wrap"></div>
           <!-- items render here -->
-  
+
+
       </div>
   </div>
 </div>
