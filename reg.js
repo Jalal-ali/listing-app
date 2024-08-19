@@ -7,6 +7,9 @@ const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 const form = document.querySelector("#form");
 const googlebtn = document.querySelector("#ggl-btn");
+const popupModal = document.querySelector("#popup-modal");
+const closePopup = document.querySelector("#closePopup");
+const userpara = document.querySelector(".userpara");
 // const loggedIn = document.querySelector("#loggedIn")
 
 const btn = document.querySelector("#btn");
@@ -44,8 +47,12 @@ googlebtn.addEventListener('click' , ()=>{
    const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
    const user = result.user;
-   
+   userpara.innerHTML = user.email + "." ;
+   popupModal.classList.remove("hidden");
+   closePopup.addEventListener('click' , ()=>{
+    popupModal.classList.add("hidden");
     window.location.href = "home.html" ;
+  })
   }).catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;

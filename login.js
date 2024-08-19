@@ -6,6 +6,10 @@ import { auth } from "./config.js"
 // import { popupModal  } from "./home.js";
 // auth.languageCode = 'en';
 
+const popupModal = document.querySelector("#popup-modal");
+const closePopup = document.querySelector("#closePopup");
+const userpara = document.querySelector(".userpara");
+
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 const form = document.querySelector("#form");
@@ -25,7 +29,14 @@ signInWithEmailAndPassword(auth, email.value, password.value)
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    window.location.href = "home.html" ;
+    console.log(user.email);
+    userpara.innerHTML = user.email + "." ;
+    popupModal.classList.remove("hidden");
+    closePopup.addEventListener('click' , ()=>{
+      popupModal.classList.add("hidden");
+      window.location.href = "home.html" ;
+    })
+
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -43,8 +54,12 @@ googlebtn.addEventListener('click' , ()=>{
    const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
    const user = result.user;
-   
+   userpara.innerHTML = user.email + "." ;
+   popupModal.classList.remove("hidden");
+   closePopup.addEventListener('click' , ()=>{
+    popupModal.classList.add("hidden");
     window.location.href = "home.html" ;
+  })
   }).catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -52,3 +67,5 @@ googlebtn.addEventListener('click' , ()=>{
     const credential = GoogleAuthProvider.credentialFromError(error);
   });
 })
+// success login modal //
+

@@ -1,8 +1,9 @@
 import { signOut , onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import { auth } from "./config.js";
-
-const btn = document.querySelector("#btn");
-const show = document.querySelector("#show");
+import {app , auth , db } from "./config.js";
+import { query, orderBy, getDocs ,
+       collection,
+       addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+const logbtn = document.querySelectorAll("#btn");
 const form = document.querySelector("#form");
 const todo = document.querySelector("#todo");
 const items = document.querySelector("#items");
@@ -12,18 +13,23 @@ const closeBtn = document.querySelector("#closeBtn");
 const price = document.querySelector("#price");
 const category = document.querySelector("#category");
 const description = document.querySelector("#description");
-
-const popupModal = document.querySelector("#popup-modal");
-const closePopup = document.querySelector("#closePopup");
-
-
-// success modal //
-closePopup.addEventListener('click' , ()=>{
-  popupModal.classList.add("hidden");
-} )
+const hambrgr = document.querySelector("#hambrgr");
+const hdnli = document.querySelector("#hdnli");
 
 
-//card modal work
+let x = 0 ;
+hambrgr.addEventListener('click' , ()=>{
+  if (x == 0) {
+    hdnli.classList.remove("hidden");
+    x = 1;
+  } else {
+    hdnli.classList.add("hidden");
+    x = 0;
+  }
+})
+
+
+//product modal work
 openBtn.addEventListener('click' , ()=>{
   modal.classList.remove("hidden");
 })
@@ -37,29 +43,32 @@ closeBtn.addEventListener('click' , ()=>{
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = user.uid;
-    popupModal.classList.remove("hidden");
+    console.log(user.uid);
   } else {
     window.location = "index.html" ;
   }
 });
 
-// logout 
-btn.addEventListener("click" , ()=>{
-  signOut(auth).then(() => {
-    window.location = "index.html";
-    }).catch((error) => {
-      alert("err");
-    });
 
+
+// logout 
+logbtn.forEach((btn)=>{
+  btn.addEventListener('click' ,  ()=> {
+    signOut(auth).then(() => {
+      window.location = "index.html";
+    }).catch((error) => {
+            alert("err");
+          });
+        } )
 })
 
 
 
-
-const arr = [] 
-const descriptionarr = [] 
-const pricearr = [] 
-const categoryarr = [] 
+// global arrays 
+let arr = [] 
+let descriptionarr = [] 
+let pricearr = [] 
+let categoryarr = [] 
 
 
 
@@ -69,16 +78,22 @@ function render() {
   for(let i=0 ; i<arr.length ; i++){
     items.innerHTML +=   `
     <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-    <h5 class="subpixel-antialiased mb-2 text-2xl text-sm text-lg text-xl font-bold tracking-tight text-gray-900 dark:text-white">${arr[i]}</h5>
-    <h5 class="subpixel-antialiased mb-2 text-2xl font-semibold tracking-tight text-gray-200 font-mono ">Rs.<span class="text-green-500 font-mono">${pricearr[i]}</span></h5>
+    <h5 class="mb-2 text-2xl text-sm text-lg text-xl font-bold tracking-tight text-gray-900 dark:text-white">${arr[i]}</h5>
+    <h5 class=" mb-2 text-2xl font-semibold tracking-tight text-gray-200 font-mono ">Rs.<span class="text-green-500 font-mono">${pricearr[i]}</span></h5>
     <h5 class="mb-2 text-2xl font-sans tracking-tight text-gray-900 dark:text-white">${categoryarr[i]}</h5>
-    <p class="subpixel-antialiased italic font-medium text-gray-700 dark:text-gray-400">"${descriptionarr[i]}"</p>
+    <p class="italic font-medium text-gray-700 dark:text-gray-400">"${descriptionarr[i]}"</p>
     <div class="flex justify-around justify-items-end ms-auto mt-4 container">
     <button class="editBtn focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2.5 me-2 mb-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</button>
     <button class="dltBtn focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-1 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+     <button class="save focus:outline-none text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-1 dark:focus:ring-green-900">Save</button>
     </div>
     </a>`;
     
+    const save = document.querySelectorAll(".save");
+save.forEach((btn , index)=>{
+  btn.addEventListener('click' , ()=> saveData(index))
+})
+
     //edit button work 
     const editBtn = document.querySelectorAll(".editBtn");
     editBtn.forEach((btn , index)=>{
@@ -92,13 +107,33 @@ dltBtn.forEach((btn , index)=>{
   btn.addEventListener('click' , ()=> dltFunc(index))
 })
 //...
+  }//...for-loop ended  
 
-  }//...for-loop ended   
+}//render func ended
+
+// save to firebase db 
+async function saveData(index){
+
+  try {
+    const docRef = await addDoc(collection(db, "cards"), {
+      Item: arr,
+      Price: pricearr,
+      Category : categoryarr ,
+      Description: descriptionarr,
+      Time: serverTimestamp() ,
+      uid: auth.currentUser.uid
+    });  
+    console.log(arr + " pushed " + "Document written with ID: ", docRef.id);
+
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+//....
 }
 
 //edit function
 function editFunc(index) {
-  const newItem = prompt("Edit Your Item's Name.");
+  const newItem = prompt(`Edit Your Item's Name.`);
   const newPrice = prompt("Edit Your Item's Price.");
   const newDescription  = prompt("Edit Your Item's Description.");
   arr.splice(index , 1 , newItem );
@@ -114,7 +149,7 @@ render();
 }
 
 
-form.addEventListener('submit' , (event)=>{
+form.addEventListener('submit' ,async (event)=>{
   event.preventDefault();
   modal.classList.add("hidden");
   arr.push(todo.value);
@@ -122,12 +157,12 @@ form.addEventListener('submit' , (event)=>{
   pricearr.push(price.value);
   categoryarr.push(category.value);
   render();
-  todo.value = ' ' ;
-  description.value = ' ' ;
-  price.value = ' ' ;
-  category.value = ' ' ;
 
+todo.value = ' ' ;
+description.value = ' ' ;
+price.value = ' ' ;
+category.value = ' ' ;
 })
 
 
- 
+
