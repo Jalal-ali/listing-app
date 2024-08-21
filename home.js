@@ -15,6 +15,8 @@ const category = document.querySelector("#category");
 const description = document.querySelector("#description");
 const hambrgr = document.querySelector("#hambrgr");
 const hdnli = document.querySelector("#hdnli");
+const userdrop = document.querySelector("#userdrop");
+const dropdownMenuButton2 = document.querySelector("#dropdownMenuButton2");
 
 
 let x = 0 ;
@@ -25,6 +27,17 @@ hambrgr.addEventListener('click' , ()=>{
   } else {
     hdnli.classList.add("hidden");
     x = 0;
+  }
+})
+
+let y = 0 ;
+dropdownMenuButton2.addEventListener('click' , ()=>{
+  if (y == 0) {
+    userdrop.classList.remove("hidden");
+    y = 1;
+  } else {
+    userdrop.classList.add("hidden");
+    y = 0;
   }
 })
 
@@ -57,9 +70,9 @@ logbtn.forEach((btn)=>{
     signOut(auth).then(() => {
       window.location = "index.html";
     }).catch((error) => {
-            alert("err");
-          });
-        } )
+      alert("err");
+    });
+  } )
 })
 
 
@@ -69,7 +82,15 @@ let arr = []
 let descriptionarr = [] 
 let pricearr = [] 
 let categoryarr = [] 
-
+//...
+// get img 
+let image = document.getElementById('output');
+let file = document.getElementById('file');
+file.addEventListener('click' , ()=>{  
+// image.src = window.URL.createObjectURL(file.files[0]) ;
+  console.log(file.files[0].name);
+  
+})
 
 
 //render func
@@ -157,6 +178,7 @@ form.addEventListener('submit' ,async (event)=>{
   pricearr.push(price.value);
   categoryarr.push(category.value);
   render();
+
 
 todo.value = ' ' ;
 description.value = ' ' ;

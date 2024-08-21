@@ -10,6 +10,8 @@ import { query, orderBy, getDocs ,
  //hamburger work
  const hambrgr = document.querySelector("#hambrgr");
  const hdnli = document.querySelector("#hdnli");
+ const userdrop = document.querySelector("#userdrop");
+const dropdownMenuButton2 = document.querySelector("#dropdownMenuButton2");
 
  let x = 0 ;
  hambrgr.addEventListener('click' , ()=>{
@@ -21,6 +23,17 @@ import { query, orderBy, getDocs ,
      x = 0;
    }
  })
+
+ let y = 0 ;
+dropdownMenuButton2.addEventListener('click' , ()=>{
+  if (y == 0) {
+    userdrop.classList.remove("hidden");
+    y = 1;
+  } else {
+    userdrop.classList.add("hidden");
+    y = 0;
+  }
+})
 
        //check user
 onAuthStateChanged(auth, (user) => {

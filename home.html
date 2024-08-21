@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" /> -->
     <title>Home</title>
 </head>
 <body class="bg-zinc-100">
-    <nav class="shadow-lg shadow-blue-500/50 bg-white border-gray-200 dark:bg-gray-900">
-        <div class="max-w-screen-xl flex flex-wrap items-center lg:justify-between md:justify-between justify-evenly xl:justify-between mx-auto p-4">
+    <nav class="shadow-lg shadow-blue-300/50 bg-white border-gray-200 dark:bg-gray-950">
+        <div class="max-w-screen-xl flex flex-wrap items-center lg:justify-between md:justify-between justify-between xl:justify-between mx-auto p-4">
         <a href="./home.html" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="./assets/sell_7439662.png" class="h-10" alt="Flowbite Logo" />
             <span class="block self-center lg:text-2xl md:text-2xl sm:text-1xl xl:text-2xl font-semibold whitespace-nowrap dark:text-white">Sell & Purchase.</span>
         </a>
         <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <button id="btn" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Log-Out</button>
-            <button id="hambrgr" data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-cta" aria-expanded="false">
+          <!-- here  -->
+            
+          <button id="hambrgr" data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-cta" aria-expanded="false">
               <span class="sr-only">Open main menu</span>
               <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
@@ -23,7 +23,7 @@
           </button>
         </div>
         <div id="hdnli" class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
-          <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-950 dark:border-gray-700">
             <li>
               <a href="home.html" class="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:dark:text-blue-500" aria-current="page">Home</a>
             </li>
@@ -33,12 +33,82 @@
           </ul>
         </div>
         </div>
-      </nav>
+
+        <!-- sec navbar  -->
+<nav
+  class="relative flex w-full flex-wrap items-center justify-between bg-gray-800 py-2 shadow-dark-mild dark:bg-gray-900 lg:py-4"
+  data-twe-navbar-ref>
+  <div class="flex w-full flex-wrap items-center justify-between px-3">
+    <div class="relative flex items-center">
+      <input type="file"  accept="image/jpg, image/jpeg, image/png " name="image" id="file"  style="display: none;">  
+      <!-- <p class="text-gray-800"><label for="file" style="cursor: pointer;">Upload Image</label></p> -->
+      
+      <!-- Dropdown -->
+      <div class="relative" data-twe-dropdown-ref>
+        <a 
+        class="flex items-center px-2 text-black/60 transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80"
+        href="#"
+          type="button"
+          id="dropdownMenuButton2"
+          data-twe-dropdown-toggle-ref
+          aria-expanded="false">
+          <img src="./assets/pngwing.com.png" id="output" class="lg:size-14 md:size-12 size-9 m-1 ring-2 ring-gray-200 rounded-full border border-gray-600 " />
+          <span class="[&>svg]:w-5">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor">
+              <path
+                fill-rule="evenodd"
+                d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                clip-rule="evenodd" />
+              </svg>
+            </span>
+        </a>
+        
+        <ul id="userdrop"
+          class="absolute z-[1000] float-left m-2 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-slate-950 bg-clip-padding text-left text-base shadow-lg data-[twe-dropdown-show]:block dark:bg-surface-dark"
+          aria-labelledby="dropdownMenuButton1"
+          data-twe-dropdown-menu-ref>
+          <div class="block w-full whitespace-nowrap border-zinc-400 border-b bg-slate-700 px-4 py-2 text-sm font-normal text-center text-neutral-700 hover:bg-emerald-950 focus:bg-emerald-950 focus:outline-none active:bg-emerald-950 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-emerald-900 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25">
+            <div class="font-medium truncate">name@flowbite.com</div>
+          </div>
+          <li>
+            <a
+              class="block w-full whitespace-nowrap border-gray-600 border-b bg-slate-700 px-4 py-2 text-sm font-normal text-center text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
+              href="#"
+              data-twe-dropdown-item-ref
+              >Action</a
+            >
+          </li>
+          <li>
+            <a
+              class="block w-full whitespace-nowrap border-b border-zinc-400 bg-slate-700 text-center px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
+              href="#"
+              data-twe-dropdown-item-ref
+              >Another action</a
+            >
+          </li>
+          <li>
+            <button id="btn" class="block w-full whitespace-nowrap bg-slate-700 px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-rose-700 focus:bg-red-200 focus:outline-none active:bg-red-200 active:no-underline dark:bg-red-dark dark:text-white dark:hover:bg-red-950 dark:focus:bg-red-800/25 dark:active:bg-red-800/25"
+              href="#"
+              data-twe-dropdown-item-ref
+              >Log-Out</button 
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+  <!--sec ended  -->
+</nav>
 <!-- navbar ended  -->
 
+      
 <!-- component -->
 <div class="max-w-3xl mx-auto text-center mt-6">
-    <h1 class="text-4xl font-bold text-gray-900 leading-tight mb-2 border-b-2 border-blue-600 pb-2">
+    <h1 id="imgshow" class="text-4xl font-bold text-gray-900 leading-tight mb-2 border-b-2 border-blue-600 pb-2">
       HOME 
     </h1>
     <p class="sm:text-md lg:text-lg text-gray-800 mb-8">Click "Add your products" to list your products and "save" it to your DataBase.</p>
@@ -73,6 +143,7 @@
                     <span class="sr-only">Close modal</span>
                 </button>
             </div>
+
             <!-- Modal body -->
             <form id="form" class="p-4 md:p-5">
                 <div class="grid gap-4 mb-4 grid-cols-2">
@@ -105,16 +176,20 @@
                 </button>
             </form>
         </div>
-    </div>
-</div> 
-<!-- modal end -->
+        </div>
+      </div> 
+      <!-- modal end -->
+<!-- .... -->
+
+      <!-- image  -->
+      
+
 
           <div id="items" class="my-2 gap-3 justify-center flex flex-wrap">
-            <!-- items render here -->
+            <!-- cards render here -->
           </div>
           
-         
-      </div>
+     </div>
 
   </div>
 </div>
@@ -135,7 +210,6 @@
 
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js">import 'flowbite';</script> -->
     <script type="module" src="home.js"></script>
 </body>
 </html>
