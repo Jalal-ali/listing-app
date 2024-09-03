@@ -64,9 +64,11 @@ let descriptionArr = []
 let itemArr = []
 let priceArr = []
 let categoryArr = []
+
 //func getData from fire base
 async function getData() {
-  const querySnapshot = await getDocs(collection(db, "cards"));
+const q = query(collection(db, "cards"),orderBy('postTime' , 'desc'))
+  const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc , index) => {
     if(doc.data().uid == auth.currentUser.uid){
       wholeData.push(doc.data());

@@ -141,11 +141,14 @@ async function saveData(index){
       Price: pricearr,
       Category : categoryarr ,
       Description: descriptionarr,
-      Time: serverTimestamp() ,
+      postTime: serverTimestamp() ,
       uid: auth.currentUser.uid
     });  
     console.log(arr + " pushed " + "Document written with ID: ", docRef.id);
-
+arr = []
+pricearr = []
+descriptionarr = []
+categoryarr = []
   } catch (e) {
     console.error("Error adding document: ", e);
   }
